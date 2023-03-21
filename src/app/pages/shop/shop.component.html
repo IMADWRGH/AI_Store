@@ -13,7 +13,9 @@
 
           <del class="text-danger">{{ product.price + 150 }} DH</del>
         </h5>
-        <a href="#" class="btn btn-dark">Ajouter au panier</a>
+        <a routerLink="/cart/{{ product.id }}" class="btn btn-dark"
+          >Ajouter au panier</a
+        >
       </div>
     </div>
   </div>

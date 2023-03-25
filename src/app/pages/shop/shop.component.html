@@ -13,7 +13,17 @@
 
           <del class="text-danger">{{ product.price + 150 }} DH</del>
         </h5>
-        <a routerLink="/cart/{{ product.id }}" class="btn btn-dark"
+        <a
+          routerLink="/cart"
+          (click)="
+            onAddToCart({
+              id: product.id,
+              name: product.name,
+              price: product.price,
+              desc: product.description
+            })
+          "
+          class="btn btn-dark"
           >Ajouter au panier</a
         >
       </div>

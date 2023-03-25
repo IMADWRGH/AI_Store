@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CartServiceService } from '../../services/cart-service.service';
+
 
 @Component({
   selector: 'app-shop',
@@ -13,5 +15,7 @@ export class ShopComponent {
     { id: 4, name: 'Produit 4', description: 'Description produit 4', price: 40 },
     { id: 5, name: 'Produit 5', description: 'Description produit 5', price: 50 },
   ];
+  constructor(private CartServiceService: CartServiceService) { }
+  onAddToCart(product: any) { this.CartServiceService.addToCart(product); }
 
 }

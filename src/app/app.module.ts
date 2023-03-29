@@ -7,6 +7,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { AppRoutingModule } from './app-routing.module';
+import { PublicComponent } from './public/public.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { AppRoutingModule } from './app-routing.module';
     NavComponent,
     HomeComponent,
     ShopComponent,
-    CartComponent
+    CartComponent,
+    PublicComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

@@ -1,18 +1,47 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Product } from 'src/app/interfaces/product';
+import { CartService } from 'src/app/services/cart.service';
+import { CategoriesService } from 'src/app/services/categories.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
-export class ShopComponent {
-  products: any = [
-    { id: 1, name: 'Produit 1', description: 'Description produit 1', price: 10 },
-    { id: 2, name: 'Produit 2', description: 'Description produit 2', price: 20 },
-    { id: 3, name: 'Produit 3', description: 'Description produit 3', price: 30 },
-    { id: 4, name: 'Produit 4', description: 'Description produit 4', price: 40 },
-    { id: 5, name: 'Produit 5', description: 'Description produit 5', price: 50 },
-  ];
+export class ShopComponent implements OnInit {
+
+  categories: any = [];
+
+  products!: Product[];
+  constructor(private productService: ProductService, private router: Router, private cartService: CartService, private categoriesService: CategoriesService) {
+
+  }
+
+
+  ngOnInit() {
+    this.products = this.productService.getProducts();
+    this.categories = this.categoriesService.getCategories()
+  }
+
+  filterByCategory(category: string) {
+    if (category == 'all') {
+      this.products = this.productService.getProducts();
+    } else {
+      this.products = this.productService.getProductsByCategory(category);
+    }
+  }
+
+  // addToCart(p: Product): void {
+  //   // console.log(p)
+  //   this.cartService.add(p);
+  //   // this.router.navigate(['/cart']);
+  // }
+
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+    this.router.navigate(['/cart']);
+  }
 
 }
